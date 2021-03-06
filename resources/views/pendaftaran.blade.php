@@ -111,10 +111,7 @@
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" name="email" class="form-control" placeholder="Email" value="{{ old('email') }}">
-                @error('email')
-                    <span class="error">{{ $message }}</span>
-                @enderror
+                <input type="text" name="email" class="form-control" placeholder="Email" value="{{ old('email') }}">
             </div>
             <div class="form-group text-center">
                 <button class="btn btn-submit" type="submit">Daftar</button>

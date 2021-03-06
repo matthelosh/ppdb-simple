@@ -67,7 +67,7 @@ class SiswaController extends Controller
             'kec.required' => 'Harus diisi',
             'kab.required' => 'Harus diisi',
             'nama_ibu.required' => 'Harus diisi',
-            'email.email' => 'Pastikan format email benar.Contoh: email@gmal.com',
+            // 'email.email' => 'Pastikan format email benar.Contoh: email@gmal.com',
         ]);
         
         if ($validator->fails()) {
@@ -93,7 +93,7 @@ class SiswaController extends Controller
                 'kab' => $request->kab,
                 'nama_ibu' => $request->nama_ibu,
                 'hp' => $request->hp,
-                'email' => $request->email]
+                'email' => $request->email ?? 'siswa@sdn1-bedalisodo.sch.id']
             );
             return redirect()->route('home')->with(['success' => true, 'message' => 'Selamat, Ananda '.$request->nama.' telah terdaftar di sistem PPDB SD Negeri 1 Bedalisodo.']);
         } catch (\Exception $e)
