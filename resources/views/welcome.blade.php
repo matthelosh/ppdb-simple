@@ -51,7 +51,7 @@
                 color: white;
             }
             span.error{
-                color: #fdc8c8;
+                color: #d83d3d;
             }
             .btn-home {
                 padding: 10px 20px;
