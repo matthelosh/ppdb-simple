@@ -164,7 +164,12 @@
                     $('.modal').modal('hide')
                 })
 
-                var jml = {{ $jml }}
+               
+            })
+        </script>
+        @if($page == 'home')
+            <script>
+                 var jml = {{ $jml }}
                 var labels = ['Laki-laki: {{ $l }}', 'Perempuan: {{ $p }}']
                 var data = [{{ $l/$jml*100 }}, {{ $p/$jml*100 }}]
 
@@ -199,7 +204,7 @@
                     }
                 }
                 })
-            })
-        </script>
+            </script>
+        @endif
     </body>
 </html>
