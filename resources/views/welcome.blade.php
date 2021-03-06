@@ -81,13 +81,16 @@
             @endif
 
             <div class="container">
-                <div class="d-flex justify-content-center pt-8 sm:justify-start sm:pt-0 text-white" style="padding:30px;">
+                <div class="d-flex justify-content-center " style="padding:30px;">
                     <div>
                         @if($page !== 'home')
-                            @yield('content')
+                            <div class="row">
+                                @yield('content')
+                            </div>
+                           
                         @else
                             <div class="row">
-                                <div class="col-sm-12">
+                                <div class="col-sm-12 text-white">
                                     <h2>SD Negeri 1 Bedalisodo</h2>
                                     <p>Guna memutus rantai penyebaran visrus Corona, SD Negeri 1 Bedalisodo Mengembangkan Sistem Pendaftaran Peserta Didik baru berbasis online. Orang Tua / Wali Calon Peserta Didik dapat mendaftarkan putra-putrinya melalui sistem ini. Gunakan Tautan di bawah ini untuk mengisi formulir pendaftaran.</p>
                                     <hr>
