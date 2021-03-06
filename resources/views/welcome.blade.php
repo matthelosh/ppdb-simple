@@ -14,7 +14,7 @@
         <style>
             body {
                 font-family: 'Nunito', sans-serif;
-                color: white;
+                /* color: white; */
                 /* background:  rgb(123, 172, 194); */
                 background-image: url("{{ asset('img/gunung.svg') }}");
                 background-image: url("{{ asset('img/gunung.svg') }}"), linear-gradient(-135deg, rgb(103, 152, 173) 25%, rgb(46, 109, 139));
@@ -55,6 +55,12 @@
                 background: #323232;
                 /* margin: 100px auto; */
             }
+            button.close {
+                border: none;
+                background: transparent;
+                color: #666;
+                font-size: 1.5em;
+            }
         </style>
     </head>
     <body class="antialiased">
@@ -84,7 +90,7 @@
                             <p>Guna memutus rantai penyebaran visrus Corona, SD Negeri 1 Bedalisodo Mengembangkan Sistem Pendaftaran Peserta Didik baru berbasis online. Orang Tua / Wali Calon Peserta Didik dapat mendaftarkan putra-putrinya melalui sistem ini. Gunakan Tautan di bawah ini untuk mengisi formulir pendaftaran.</p>
                             <hr>
                             <a href="{{ route('daftar.index') }}" class="btn btn-home btn-dark">Daftar</a>
-                            <a href="/daftar/status" class="btn btn-home btn-dark">Lihat Status</a>
+                            <button type="button" class="btn btn-home btn-dark btn-check-siswa" >Lihat Status</button>
                             <hr>
                             <p>Mengingat kondisi ekonomi yang terimbas oleh pandemi, pada tahun pelajaran 2021-2022 SD Negeri 1 Bedalisodo akan memberikan seragam batik dan atribut gratis untuk peserta didik baru. Setelah terdaftar, peserta didik akan mendapatkan pula akun google pendidikan untuk digunakan pembelajaran daring. Dengan akun google tersebut, peserta didik dapat mengakses banyak fitur premium Google Workspace secara gratis. Seperti Gmail dengan akhiran @sdn1-bedalisodo.sch.id, Classroom, Google Meet, Google Drive, dll.</p>
                             <img src="{{ asset('img/siswas-sd.png') }}" alt="Siswa SD" style="width: 100%;">
@@ -95,6 +101,34 @@
             </div>
             
         </div>
+
+        <div class="modal" id="modalCekCasis">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form action="{{ route('daftar.status') }}" class="form" id="formCariSiswa" method="GET">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Maukkan Nama Calon Siswa</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        
+                            @csrf()
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Calon Siswa">
+                            </div>
+                        
+                    </div>
+                    <div class="card-footer">
+                        <div class="form-group d-flex justify-content-center">
+                            <button type="submit" class="btn btn-lg btn-secondary">Cari</button>
+                        </div>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
         {{-- <footer clas="text-center" style="width:100%;background:#efefef;position:relative;bottom:0;display:flex; justify-content: center;">
             <img src="{{ asset('img/gsuite.png') }}" alt="G Suite" style="margin:auto;height: 75px;">
         </footer> --}}
@@ -104,6 +138,13 @@
         <script>
             $(document).ready(function(){
                 // alert('hi')
+                $('.btn-check-siswa').click(function(){
+                    $('#modalCekCasis').modal('show')
+                })
+
+                $('button.close').click(function() {
+                    $('.modal').modal('hide')
+                })
             })
         </script>
     </body>

@@ -19,7 +19,10 @@ Route::get('/', function () {
     return view('welcome',['page' => 'home', 'page_title' => 'Beranda']);
 })->name('home');
 
-Route::resource('/daftar', SiswaController::class);
+Route::get('/daftar/status', [SiswaController::class, 'status'])->name('daftar.status');
+Route::resource('/daftar', SiswaController::class)->names([
+    'create' => 'daftar.isi-data',
+]);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

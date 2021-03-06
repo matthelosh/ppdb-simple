@@ -102,6 +102,11 @@ class SiswaController extends Controller
         }
     }
 
+    public function status(Request $request)
+    {
+        $siswas = Siswa::where([['nama','like','%'.$request->nama.'%']])->get();
+        return view('status', ['page' => 'status', 'page_title' => 'Status Calon Siswa', 'siswas' => $siswas, 'nama_dicari' => $request->nama]);
+    }
     /**
      * Display the specified resource.
      *
