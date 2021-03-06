@@ -165,7 +165,7 @@
                 })
 
                 var jml = {{ $jml }}
-                var labels = ['Laki-laki', 'Perempuan']
+                var labels = ['Laki-laki: {{ $l }}', 'Perempuan: {{ $p }}']
                 var data = [{{ $l/$jml*100 }}, {{ $p/$jml*100 }}]
 
                 var ctx = document.getElementById('perjk').getContext('2d');
