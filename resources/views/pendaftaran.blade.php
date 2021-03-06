@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="form-pendaftaran">
-        <h2 class="text-center">Formulir Pendaftaran</h2>
+        <h2 class="text-center"><small>Formulir Pendaftaran Peserta Didik Baru </small><br>SD Negeri 1 Bedalisodo</h2>
         <form action="{{ route('daftar.store') }}" method="POST">
             @csrf()
             <div class="form-group">

@@ -53,6 +53,11 @@
             span.error{
                 color: #fdc8c8;
             }
+            .btn-home {
+                padding: 10px 20px;
+                background: #323232;
+                margin: 100px auto;
+            }
         </style>
     </head>
     <body class="antialiased">
@@ -74,10 +79,24 @@
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8 content">
                 <div class="flex justify-center pt-8 sm:justify-start sm:pt-0 text-white" style="padding:30px;">
                     <div>
-                        @yield('content')
+                        @if($page !== 'home')
+                            @yield('content')
+                        @else
+                            <h1>Selamat Datang!</h1>
+                            <p>Guna memutus rantai penyebaran visrus Corona, SD Negeri 1 Bedalisodo Mengembangkan Sistem Pendaftaran Peserta Didik baru berbasis online. Orang Tua / Wali Calon Peserta Didik dapat mendaftarkan putra-putrinya melalui sistem ini. Gunakan Tautan di bawah ini untuk mengisi formulir pendaftaran.</p>
+                            <br>
+                            <a href="{{ route('daftar.index') }}" class="btn btn-home">Daftar</a>
+                            <br>
+                            <br>
+                            <p>Mengingat kondisi ekonomi yang terimbas oleh pandemi, pada tahun pelajaran 2021-2022 SD Negeri 1 Bedalisodo akan memberikan seragam batik dan atribut gratis untuk peserta didik baru. Setelah terdaftar, peserta didik akan mendapatkan pula akun google pendidikan untuk digunakan pembelajaran daring. Dengan akun google tersebut, peserta didik dapat mengakses banyak fitur premium Google Workspace secara gratis. Seperti Gmail dengan akhiran @sdn1-bedalisodo.sch.id, Classroom, Google Meet, Google Drive, dll.</p>
+                        @endif
                     </div>
                 </div>
             </div>
+            
         </div>
+        <footer clas="text-center" style="width:100%;background:#efefef;position:relative;bottom:0;display:flex; justify-content: center;">
+            <img src="{{ asset('img/gsuite.png') }}" alt="G Suite" style="margin:auto;height: 75px;">
+        </footer>
     </body>
 </html>
