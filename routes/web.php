@@ -16,7 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome',['page' => 'home', 'page_title' => 'Beranda']);
+    $all = 'App\Models\Siswa'::all();
+    $l = 'App\Models\Siswa'::where('jk', 'l')->get();
+    $p = 'App\Models\Siswa'::where('jk', 'p')->get();
+    return view('welcome',['page' => 'home', 'page_title' => 'Beranda', 'jml' => $all->count(), 'l' => $l->count(), 'p' => $p->count()]);
 })->name('home');
 
 Route::get('/daftar/status', [SiswaController::class, 'status'])->name('daftar.status');

@@ -9,6 +9,7 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('bs/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('chart/Chart.min.css') }}">
         <!-- Styles -->
 
         <style>
@@ -79,26 +80,42 @@
                 </div>
             @endif
 
-            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8 content">
-                <div class="flex justify-center pt-8 sm:justify-start sm:pt-0 text-white" style="padding:30px;">
+            <div class="container">
+                <div class="d-flex justify-content-center pt-8 sm:justify-start sm:pt-0 text-white" style="padding:30px;">
                     <div>
                         @if($page !== 'home')
                             @yield('content')
                         @else
-
-                            <h2>SD Negeri 1 Bedalisodo</h2>
-                            <p>Guna memutus rantai penyebaran visrus Corona, SD Negeri 1 Bedalisodo Mengembangkan Sistem Pendaftaran Peserta Didik baru berbasis online. Orang Tua / Wali Calon Peserta Didik dapat mendaftarkan putra-putrinya melalui sistem ini. Gunakan Tautan di bawah ini untuk mengisi formulir pendaftaran.</p>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h2>SD Negeri 1 Bedalisodo</h2>
+                                    <p>Guna memutus rantai penyebaran visrus Corona, SD Negeri 1 Bedalisodo Mengembangkan Sistem Pendaftaran Peserta Didik baru berbasis online. Orang Tua / Wali Calon Peserta Didik dapat mendaftarkan putra-putrinya melalui sistem ini. Gunakan Tautan di bawah ini untuk mengisi formulir pendaftaran.</p>
+                                    <hr>
+                                    <a href="{{ route('daftar.index') }}" class="btn btn-home btn-dark">Daftar</a>
+                                    <button type="button" class="btn btn-home btn-dark btn-check-siswa" >Lihat Status</button>
+                                    <hr>
+                                    <p>Mengingat kondisi ekonomi yang terimbas oleh pandemi, pada tahun pelajaran 2021-2022 SD Negeri 1 Bedalisodo akan memberikan seragam batik dan atribut gratis untuk peserta didik baru. Setelah terdaftar, peserta didik akan mendapatkan pula akun google pendidikan untuk digunakan pembelajaran daring. Dengan akun google tersebut, peserta didik dapat mengakses banyak fitur premium Google Workspace secara gratis. Seperti Gmail dengan akhiran @sdn1-bedalisodo.sch.id, Classroom, Google Meet, Google Drive, dll.</p>
+                                    <img src="{{ asset('img/siswas-sd.png') }}" alt="Siswa SD" style="width: 100%;">
+                                    <img src="{{ asset('img/gsuite.png') }}" alt="G Suite" style="margin:auto;width: 100%;background:white;">
+                                </div>
+                                
+                            </div>
                             <hr>
-                            <a href="{{ route('daftar.index') }}" class="btn btn-home btn-dark">Daftar</a>
-                            <button type="button" class="btn btn-home btn-dark btn-check-siswa" >Lihat Status</button>
-                            <hr>
-                            <p>Mengingat kondisi ekonomi yang terimbas oleh pandemi, pada tahun pelajaran 2021-2022 SD Negeri 1 Bedalisodo akan memberikan seragam batik dan atribut gratis untuk peserta didik baru. Setelah terdaftar, peserta didik akan mendapatkan pula akun google pendidikan untuk digunakan pembelajaran daring. Dengan akun google tersebut, peserta didik dapat mengakses banyak fitur premium Google Workspace secara gratis. Seperti Gmail dengan akhiran @sdn1-bedalisodo.sch.id, Classroom, Google Meet, Google Drive, dll.</p>
-                            <img src="{{ asset('img/siswas-sd.png') }}" alt="Siswa SD" style="width: 100%;">
-                            <img src="{{ asset('img/gsuite.png') }}" alt="G Suite" style="margin:auto;width: 100%;background:white;">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h3 class="card-title text-dark">Statistik</h3>
+                                            <canvas id="perjk"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         @endif
                     </div>
                 </div>
             </div>
+            
             
         </div>
 
@@ -135,6 +152,7 @@
         <script src="{{ asset('jquery.min.js') }}"></script>
         <script src="{{ asset('popper.min.js') }}"></script>
         <script src="{{ asset('bs/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('chart/Chart.min.js') }}"></script>
         <script>
             $(document).ready(function(){
                 // alert('hi')
@@ -144,6 +162,42 @@
 
                 $('button.close').click(function() {
                     $('.modal').modal('hide')
+                })
+
+                var jml = {{ $jml }}
+                var labels = ['Laki-laki', 'Perempuan']
+                var data = [{{ $l/$jml*100 }}, {{ $p/$jml*100 }}]
+
+                var ctx = document.getElementById('perjk').getContext('2d');
+
+                var pieChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: { 
+                        labels: labels,
+                        datasets : [{
+                            label: 'Data Pendaftar',
+                            data: data,
+                            backgroundColor: [
+                                'rgb(26, 214, 130)',
+                                'rgb(230, 52, 110)',
+                                'rgb(52, 82, 235)',
+                                'rgb(138, 4, 113)',
+                                'rgb(214, 134, 13)'
+                            ],
+                        }]
+                    },
+                    options: {
+                        tooltips: {
+                        callbacks: {
+                            label: function(tooltipItem, data) {
+                                var dataset = data.datasets[tooltipItem.datasetIndex];
+                                var labels = data.labels[tooltipItem.index];
+                                var currentValue = dataset.data[tooltipItem.index];
+                                return labels+": "+currentValue+" %";
+                            }
+                        }
+                    }
+                }
                 })
             })
         </script>
