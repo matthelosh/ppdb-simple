@@ -82,21 +82,24 @@
                         @if($page !== 'home')
                             @yield('content')
                         @else
-                            <h1>Selamat Datang!</h1>
+
+                            <h2>SD Negeri 1 Bedalisodo</h2>
                             <p>Guna memutus rantai penyebaran visrus Corona, SD Negeri 1 Bedalisodo Mengembangkan Sistem Pendaftaran Peserta Didik baru berbasis online. Orang Tua / Wali Calon Peserta Didik dapat mendaftarkan putra-putrinya melalui sistem ini. Gunakan Tautan di bawah ini untuk mengisi formulir pendaftaran.</p>
                             <br>
                             <a href="{{ route('daftar.index') }}" class="btn btn-home">Daftar</a>
                             <br>
                             <br>
                             <p>Mengingat kondisi ekonomi yang terimbas oleh pandemi, pada tahun pelajaran 2021-2022 SD Negeri 1 Bedalisodo akan memberikan seragam batik dan atribut gratis untuk peserta didik baru. Setelah terdaftar, peserta didik akan mendapatkan pula akun google pendidikan untuk digunakan pembelajaran daring. Dengan akun google tersebut, peserta didik dapat mengakses banyak fitur premium Google Workspace secara gratis. Seperti Gmail dengan akhiran @sdn1-bedalisodo.sch.id, Classroom, Google Meet, Google Drive, dll.</p>
+                            <img src="{{ asset('img/siswas-sd.png') }}" alt="Siswa SD" style="width: 100%;">
+                            <img src="{{ asset('img/gsuite.png') }}" alt="G Suite" style="margin:auto;width: 100%;background:white;">
                         @endif
                     </div>
                 </div>
             </div>
             
         </div>
-        <footer clas="text-center" style="width:100%;background:#efefef;position:relative;bottom:0;display:flex; justify-content: center;">
+        {{-- <footer clas="text-center" style="width:100%;background:#efefef;position:relative;bottom:0;display:flex; justify-content: center;">
             <img src="{{ asset('img/gsuite.png') }}" alt="G Suite" style="margin:auto;height: 75px;">
-        </footer>
+        </footer> --}}
     </body>
 </html>

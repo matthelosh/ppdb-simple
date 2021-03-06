@@ -50,7 +50,7 @@
             </div>
             <div class="form-group">
                 <label for="tanggal_lahir">Tanggal Lahir</label>
-                <input type="date" name="tanggal_lahir" class="form-control" placeholder="Tanggal Lahir" value="{{ old('tanggal_lahir') }}">
+                <input type="date" name="tanggal_lahir" class="form-control" placeholder="Tanggal Lahir" value="{{ old('tanggal_lahir') }}" required>
                 @error('tanggal_lahisr')
                     <span class="error">{{ $message }}</span>
                 @enderror

@@ -44,7 +44,7 @@ class SiswaController extends Controller
             'asal_sekolah'=> 'required',
             'jk'=> 'required', 
             'tempat_lahir'=> 'required', 
-            'tanggal_lahir'=> 'date_format:d-m-Y', 
+            // 'tanggal_lahir'=> 'date_format:d-m-Y', 
             'agama'=> 'required', 
             'alamat'=> 'required', 
             'desa'=> 'required', 
@@ -60,7 +60,7 @@ class SiswaController extends Controller
             'asal_sekolah.required' => 'Harus diisi, isi "tidak sekolah" jika tidak masuk TK',
             'jk.required' => 'Pilih Jenis Kelamin',
             'tempat_lahir.required' => 'Harus Diisi',
-            'tanggal_lahir.date' => 'Harus Diisi',
+            // 'tanggal_lahir.date' => 'Harus Diisi',
             'agama.required' => 'Harus diisi',
             'alamat.required' => 'Harus diisi',
             'desa.required' => 'Harus diisi',
@@ -75,31 +75,31 @@ class SiswaController extends Controller
                         ->withInput();
         }
         // dd($request->all());
-        return redirect()->route('home');
+        // return redirect()->route('home');
         // dd($valid);
-        // try {
-        //     Siswa::updateOrCreate(
-        //         ['nik' => $request->nik],
-        //         ['nisn' => $request->nisn],
-        //         ['nama' => $request->nama],
-        //         ['asal_sekolah' => $request->asal_sekolah],
-        //         ['jk' => $request->jk],
-        //         ['tempat_lahir' => $request->tempat_lahir],
-        //         ['tanggal_lahir' => $request->tanggal_lahir],
-        //         ['agama' => $request->agama],
-        //         ['alamat' => $request->alamat],
-        //         ['desa' => $request->desa],
-        //         ['kec' => $request->kec],
-        //         ['kab' => $request->kab],
-        //         ['nama_ibu' => $request->nama_ibu],
-        //         ['hp' => $request->hp],
-        //         ['email' => $request->email],
-        //     );
-        //     return redirect('home')->with(['success' => true, 'message' => 'Selamat, Ananda '.$request->nama.' telah terdaftar di sistem PPDB SD Negeri 1 Bedalisodo.']);
-        // } catch (\Exception $e)
-        // {
-        //     return back()->withErrors($e->getCode().':'.$e->getMessage());
-        // }
+        try {
+            Siswa::updateOrCreate(
+                ['nik' => $request->nik],
+                ['nisn' => $request->nisn,
+                'nama' => $request->nama,
+                'asal_sekolah' => $request->asal_sekolah,
+                'jk' => $request->jk,
+                'tempat_lahir' => $request->tempat_lahir,
+                'tanggal_lahir' => $request->tanggal_lahir,
+                'agama' => $request->agama,
+                'alamat' => $request->alamat,
+                'desa' => $request->desa,
+                'kec' => $request->kec,
+                'kab' => $request->kab,
+                'nama_ibu' => $request->nama_ibu,
+                'hp' => $request->hp,
+                'email' => $request->email]
+            );
+            return redirect()->route('home')->with(['success' => true, 'message' => 'Selamat, Ananda '.$request->nama.' telah terdaftar di sistem PPDB SD Negeri 1 Bedalisodo.']);
+        } catch (\Exception $e)
+        {
+            return back()->withErrors($e->getCode().':'.$e->getMessage());
+        }
     }
 
     /**
