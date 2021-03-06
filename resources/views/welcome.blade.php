@@ -106,6 +106,7 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <h3 class="card-title text-dark">Statistik</h3>
+                                            <h4 class="text-dark">Jumlah Terdaftar: {{ $jml }} anak</h4>
                                             <canvas id="perjk"></canvas>
                                         </div>
                                     </div>
